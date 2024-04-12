@@ -23,7 +23,7 @@ jobs:
 
     # Build Docker image
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file Dockerfile --tag img_tp2:$(date +%s)
 
     # Run the Docker container
     - name: Run the Docker container
