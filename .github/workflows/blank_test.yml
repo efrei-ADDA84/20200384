@@ -15,7 +15,18 @@ jobs:
 
       # Download and install Hadolint
       - name: Download Hadolint for Windows
-        run: curl -o hadolint.exe -L https://github.com/hadolint/hadolint/releases/latest/download/hadolint-Windows-x86_64.exe.sha256
+        run: |
+          curl -o hadolint.exe -L https://github.com/hadolint/hadolint/releases/latest/download/hadolint-Windows-x86_64.exe
+
+      # Run Hadolint against Dockerfile
+      - name: Run Hadolint
+        run: .\hadolint.exe Dockerfile
+
+      # Use API key
+      - name: Use API key
+        run: node api.js
+        env:
+           API_KEY: ${{ secrets.API_KEY }}
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
