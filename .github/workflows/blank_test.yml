@@ -1,40 +1,33 @@
-name: Build and Push Docker image
+name: CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
-  build-and-push:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: windows-latest
+
     steps:
-      - name: Check out the repo
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v2
 
-      - name: Lint Dockerfile
-        uses: hadolint/hadolint-action@v1.6.0
-        with:
-          dockerfile: ./Dockerfile
+      # Download and install Hadolint
+      - name: Download Hadolint for Windows
+        run: wget https://github.com/hadolint/hadolint/releases/latest/download/hadolint-Linux-x86_64.exe -O hadolint.exe
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
 
-      - name: Cache Docker layers
-        uses: actions/cache@v3
-        with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-buildx-
+      # Run Hadolint against Dockerfile
+      - name: Run Hadolint
+        run: .\hadolint.exe Dockerfile
 
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v3
-        with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          build-args: API_KEY=${{ secrets.API_KEY }}
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
