@@ -20,7 +20,7 @@ jobs:
 
       # Run Hadolint against Dockerfile
       - name: Run Hadolint
-        run: .\hadolint.exe Dockerfile
+        run: .\hadolint.exe "C:\Users\pmach\OneDrive\Bureau\EFREI M1\DevOps\TP2\Dockerfile"
 
       # Use API key
       - name: Use API key
