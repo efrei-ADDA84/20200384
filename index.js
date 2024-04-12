@@ -1,7 +1,10 @@
 const getWeather = require('./app');
 
-const latitude = 48.85;
-const longitude = 2.35;
+const latitude = process.env.LAT;
+const longitude = process.env.LONG;
+
+console.log('Latitude:', latitude);
+console.log('Longitude:', longitude);
 
 getWeather(latitude, longitude)
     .then(data => {
