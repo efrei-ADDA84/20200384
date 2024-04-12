@@ -3,13 +3,16 @@ const express = require('express');
 const axios = require('axios');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8081;
 
 app.get('/', async (req, res) => {
     try {
+       
         const latitude = req.query.lat || process.env.LAT;
-        const longitude = req.query.long || process.env.LONG;
+        const longitude = req.query.lon || process.env.LONG;
         const apiKey = process.env.API_KEY;
+
+        console.log(latitude, longitude)
 
         const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
         const response = await axios.get(apiUrl);
