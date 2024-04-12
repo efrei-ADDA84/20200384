@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [TP2]
+    branches: [main]
   pull_request:
-    branches: [TP2]
+    branches: [main]
 
 jobs:
   build:
@@ -30,8 +30,4 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-      - name: Use API key
-        run: node index.js
-        env:
-          API_KEY: ${{ secrets.API_KEY }}
 
