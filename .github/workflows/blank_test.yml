@@ -12,11 +12,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
-      # Download and install Hadolint
-      - name: Download Hadolint
-        run: Invoke-WebRequest -Uri https://github.com/hadolint/hadolint/releases/latest/download/hadolint-Linux-x86_64.exe -OutFile hadolint.exe
-
+      
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
