@@ -16,7 +16,7 @@ jobs:
       # Download and install Hadolint
       - name: Download Hadolint for Windows
         run: |
-          curl -o hadolint.exe -L https://github.com/hadolint/hadolint/releases/latest/download/hadolint-Windows-x86_64.exe
+          curl -o hadolint.exe -L C:\Users\pmach\Downloads\hadolint-2.12.0\hadolint-2.12.0
 
       # Run Hadolint against Dockerfile
       - name: Run Hadolint
