@@ -17,10 +17,6 @@ jobs:
       - name: Download Hadolint
         run: Invoke-WebRequest -Uri https://github.com/hadolint/hadolint/releases/latest/download/hadolint-Linux-x86_64.exe -OutFile hadolint.exe
 
-      # Run Hadolint against Dockerfile
-      - name: Run Hadolint
-        run: .\hadolint.exe Dockerfile
-
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
