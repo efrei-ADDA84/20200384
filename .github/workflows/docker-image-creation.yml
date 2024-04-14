@@ -28,7 +28,8 @@ jobs:
           docker tag img_tp2 ${{secrets.DOCKER_HUB_USERNAME}}/img_tp2:latest
           docker push ${{secrets.DOCKER_HUB_USERNAME}}/img_tp2:latest
 
-      - name: Utiliser la clé d'API pour construire et exécuter l'application
-        run: |
-          docker build --build-arg API_KEY=${{ secrets.API_KEY }} -t img_tp2 .
-          docker run -e API_KEY=${{ secrets.API_KEY }} img_tp2
+      - name: Use API key
+        run: node index.js
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+
