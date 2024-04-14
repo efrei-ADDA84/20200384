@@ -29,7 +29,7 @@ jobs:
           docker push ${{secrets.DOCKER_HUB_USERNAME}}/img_tp2:latest
 
       - name: Use API key
-        run: node index.js
+        run: node api.js
         env:
           API_KEY: ${{ secrets.API_KEY }}
 
