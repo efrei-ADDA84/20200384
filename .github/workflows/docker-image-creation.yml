@@ -24,6 +24,6 @@ jobs:
       - name: Publier sur Docker Hub
         if: github.ref == 'refs/heads/main' 
         run: |
-          echo ${{ secrets.DOCKER_HUB_PASSWORD }} | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
+          echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
           docker tag img_tp2 ${{ secrets.DOCKER_HUB_USERNAME }}/img_tp2:latest
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/img_tp2:latest
