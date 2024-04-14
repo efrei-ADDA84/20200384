@@ -1,15 +1,18 @@
-## Première étape 
+## First step
 
-Ajout du fichier api.js, permettant de lancer le serveur sur le port 8081.
+Added the api.js file, allowing the server to be launched on port 8081. Using Express to create our API.
 
-## Seconde étape 
+## Seconde step
 
-Création d'un workflow permetttant de construire une image Docker à chaque nouveau commit sur la branche principale, puis de la publier sur Docker Hub.
+Created a workflow to build a Docker image for each new commit on the main branch, then publish it to Docker Hub.
 
-## Difficulté principales 
+## Third step 
 
-Utilisation et compréhension des secrets GitHub (variables d'environnement etc...)
+Creation of different GitHub secrets such as: the DockerHub username and password, as well as the API key used.
 
+## Difficulties
+
+Use and understanding of GitHub secrets (environment variables etc...)
 
 
 
