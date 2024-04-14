@@ -1,4 +1,3 @@
-require('dotenv').config();
 const express = require('express');
 const axios = require('axios');
 
@@ -7,12 +6,9 @@ const port = process.env.PORT || 8081;
 
 app.get('/', async (req, res) => {
     try {
-       
         const latitude = req.query.lat || process.env.LAT;
         const longitude = req.query.lon || process.env.LONG;
-        const apiKey = process.env.API_KEY;
-
-        console.log(latitude, longitude)
+        const apiKey = process.env.API_KEY.toString();
 
         const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
         const response = await axios.get(apiUrl);
