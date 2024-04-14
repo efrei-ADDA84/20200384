@@ -1,0 +1,30 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v2
+
+      # Construire l'image Docker
+      - name: Construire l'image Docker
+        run: |
+          docker build -t img_tp2 .  
+          docker images                       
+
+      # Se connecter à Docker Hub et publier l'image
+      - name: Publier sur Docker Hub
+        if: github.ref == 'refs/heads/main' 
+        run: |
+          echo "${{secrets.DOCKER_HUB_TOKEN}}" | docker login -u ${{secrets.DOCKER_HUB_USERNAME}} --password-stdin
+          docker tag img_tp2 ${{secrets.DOCKER_HUB_USERNAME}}/img_tp2:latest
+          docker push ${{secrets.DOCKER_HUB_USERNAME}}/img_tp2:latest
+
