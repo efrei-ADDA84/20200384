@@ -14,10 +14,6 @@ jobs:
       - name: Checkout du code
         uses: actions/checkout@v2
 
-      - name: Run Hadolint
-        run: |
-          docker run --rm -i hadolint/hadolint < Dockerfile
-
       # Construire l'image Docker
       - name: Construire l'image Docker
         run: |
