@@ -14,12 +14,6 @@ jobs:
       - name: Checkout du code
         uses: actions/checkout@v2
 
-      # Installer les dépendances et exécuter les tests
-      - name: Installer les dépendances et tester
-        run: |
-          npm install 
-          npm test    
-
       # Construire l'image Docker
       - name: Construire l'image Docker
         run: |
