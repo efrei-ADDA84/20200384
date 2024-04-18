@@ -17,7 +17,12 @@ jobs:
       - name: Construire l'image Docker
         run: |
           docker build -t img_pour_tp3 .  
-          docker images                       
+          docker images   
+
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Publier sur Azure Container Registry
         if: github.ref == 'refs/heads/main' 
@@ -29,4 +34,4 @@ jobs:
       - name: Déployer sur Azure Container Instance
         if: github.ref == 'refs/heads/main' 
         run: |
-          az container create --resource-group ${{ secrets.RESOURCE_GROUP }} --name ${{ secrets.ACI_NAME }} --image ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}/img_pour_tp3:latest --dns-name-label devops-20200384 --location francecentral --cpu 1 --memory 1 --ports 8081 --registry-login-server ${{ secrets.REGISTRY_LOGIN_SERVER }} --registry-username ${{ secrets.REGISTRY_USERNAME }} --registry-password ${{ secrets.REGISTRY_PASSWORD }}
+          az container create --resource-group ${{ secrets.RESOURCE_GROUP }} --name 20200384 --image ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}/img_pour_tp3:latest --dns-name-label 20200384 --location "France South" --cpu 1 --memory 1 --ports 8081 --registry-login-server ${{ secrets.REGISTRY_LOGIN_SERVER }} --registry-username ${{ secrets.REGISTRY_USERNAME }} --registry-password ${{ secrets.REGISTRY_PASSWORD }}
