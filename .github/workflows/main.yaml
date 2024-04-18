@@ -16,7 +16,7 @@ jobs:
 
       - name: Construire l'image Docker
         run: |
-          docker build -t img_pour_tp3 .  
+          docker build -t img_tp2 .  
           docker images   
 
       - name: Login to Azure
@@ -28,10 +28,10 @@ jobs:
         if: github.ref == 'refs/heads/main' 
         run: |
           az acr login --name ${{ secrets.REGISTRY_LOGIN_SERVER }}
-          docker tag img_pour_tp3 ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}/img_pour_tp3:latest
-          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}/img_pour_tp3:latest
+          docker tag img_tp2 ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}/img_tp2:latest
+          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}/img_tp2:latest
 
       - name: Déployer sur Azure Container Instance
         if: github.ref == 'refs/heads/main' 
         run: |
-          az container create --resource-group ${{ secrets.RESOURCE_GROUP }} --name 20200384 --image ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}/img_pour_tp3:latest --dns-name-label 20200384 --location "France South" --cpu 1 --memory 1 --ports 8081 --registry-login-server ${{ secrets.REGISTRY_LOGIN_SERVER }} --registry-username ${{ secrets.REGISTRY_USERNAME }} --registry-password ${{ secrets.REGISTRY_PASSWORD }}
+          az container create --resource-group ${{ secrets.RESOURCE_GROUP }} --name 20200384 --image ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}/img_tp2:latest --dns-name-label 20200384 --location "France South" --cpu 1 --memory 1 --ports 8081 --registry-login-server ${{ secrets.REGISTRY_LOGIN_SERVER }} --registry-username ${{ secrets.REGISTRY_USERNAME }} --registry-password ${{ secrets.REGISTRY_PASSWORD }}
