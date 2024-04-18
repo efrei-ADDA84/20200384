@@ -34,4 +34,14 @@ jobs:
       - name: Déployer sur Azure Container Instance
         if: github.ref == 'refs/heads/main' 
         run: |
-          az container create --resource-group ${{ secrets.RESOURCE_GROUP }} --name 20200384 --image ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}/img_tp2:latest --dns-name-label 20200384 --location "France South" --cpu 1 --memory 1 --ports 8081 --registry-login-server ${{ secrets.REGISTRY_LOGIN_SERVER }} --registry-username ${{ secrets.REGISTRY_USERNAME }} --registry-password ${{ secrets.REGISTRY_PASSWORD }}
+          az container create --resource-group ${{ secrets.RESOURCE_GROUP }} 
+          --name 20200384 
+          --image ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}/img_tp2:latest 
+          --dns-name-label 20200384 
+          --location "France South" 
+          --cpu 1 
+          --memory 1 
+          --ports 8081 
+          --registry-login-server ${{ secrets.REGISTRY_LOGIN_SERVER }} 
+          --registry-username ${{ secrets.REGISTRY_USERNAME }} 
+          --registry-password ${{ secrets.REGISTRY_PASSWORD }}
